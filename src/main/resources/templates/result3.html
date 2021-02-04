@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+        <h1>This User Has Been Deleted</h1>
+
+        <p th:text="'firstName: ' + ${deleteUser.firstName}" />
+        <p th:text="'lastName ' + ${deleteUser.lastName}" />
+        <p th:text="'phoneNumber: ' + ${deleteUser.phoneNumber}" />
+        <p th:text="'email: ' + ${deleteUser.email}" />
+        <p th:text="'login: ' + ${deleteUser.login}" />
+        <a href="/deleteUser">Delete another User</a>
+</body>
+</html>
+

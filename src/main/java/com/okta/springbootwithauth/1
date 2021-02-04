@@ -151,7 +151,7 @@ class SimpleAppController {
         //headers.set()
 	*///
 
-/*
+
 	Client client = Clients.builder()
     .setOrgUrl("https://dev-199195.oktapreview.com")  // e.g. https://dev-123456.okta.com
     .setClientCredentials(new TokenClientCredentials("00xaTOVOnbcM3TqH_bvPn3wAOaa51kUANkj_8wEMlw"))
@@ -162,7 +162,7 @@ class SimpleAppController {
     .setFirstName("Joe")
     .setLastName("Code")
     .buildAndCreate(client);
-*/
+
 	/*
 	User user = UserBuilder.instance()
     .setEmail("joe.coder@example.com")
@@ -195,114 +195,27 @@ class SimpleAppController {
   @PostMapping("/createUser")
   public String createUserSubmit(@ModelAttribute Profile createuser, Model model) {
     model.addAttribute("createUser", createuser);
-
-    Client client = Clients.builder()
-    .setOrgUrl("https://dev-199195.oktapreview.com")  // e.g. https://dev-123456.okta.com
-    .setClientCredentials(new TokenClientCredentials("00xaTOVOnbcM3TqH_bvPn3wAOaa51kUANkj_8wEMlw"))
-    .build();
-
-        User user = UserBuilder.instance()
-    .setEmail(createuser.getEmail())
-    .setFirstName(createuser.getFirstName())
-    .setLastName(createuser.getLastName())
-    .buildAndCreate(client);
-
     return "result";
   }
 
+    @RequestMapping("/readUser")
+    String readUser() {
+        adminService.ensureAdmin();
+        return "readUser";
+    }
 
+    @RequestMapping("/updateUser")
+    String updateUser() {
+        adminService.ensureAdmin();
+        return "updateUser";
+    }
 
-    @GetMapping("/updateUser")
-  public String updateUserForm(Model model) {
-    model.addAttribute("updateUser", new Profile());
-    return "updateUser";
-  }
+    @RequestMapping("/deleteUser")
+    String deleteUser() {
+        adminService.ensureAdmin();
+        return "deleteUser";
+    }
 
-  @PostMapping("/updateUser")
-  public String updateUserSubmit(@ModelAttribute Profile updateuser, Model model) {
-    model.addAttribute("updateUser", updateuser);
-
-    Client client = Clients.builder()
-    .setOrgUrl("https://dev-199195.oktapreview.com")
-    .setClientCredentials(new TokenClientCredentials("00xaTOVOnbcM3TqH_bvPn3wAOaa51kUANkj_8wEMlw"))
-    .build();
-
-    User user = client.getUser("joe1.coder@example.com");    
-
-    user.getProfile().setFirstName(updateuser.getFirstName());
-    user.getProfile().setLastName(updateuser.getLastName());
-    user.getProfile().setEmail(updateuser.getEmail());
-    user.getProfile().setMobilePhone(updateuser.getPhoneNumber());
-    user.getProfile().setLogin(updateuser.getLogin());
-    
-    user.update();
-
-    return "result1";
-  }
-
-
-
-    @GetMapping("/readUser")
-  public String readUserForm(Model model) {
-    model.addAttribute("readUser", new Profile());
-    model.addAttribute("userEmail", new Profile());
-    return "readUser";
-  }
-
-  @PostMapping("/readUser")
-  public String readUserSubmit(@ModelAttribute Profile readuser, @ModelAttribute Profile useremail, Model model) {
-    model.addAttribute("readUser", readuser);
-    model.addAttribute("userEmail", useremail);
-
-    Client client = Clients.builder()
-    .setOrgUrl("https://dev-199195.oktapreview.com")
-    .setClientCredentials(new TokenClientCredentials("00xaTOVOnbcM3TqH_bvPn3wAOaa51kUANkj_8wEMlw"))
-    .build();
-
-    User user = client.getUser(useremail.getEmail());
-
-    readuser.setFirstName(user.getProfile().getFirstName());
-    readuser.setLastName(user.getProfile().getLastName());
-    readuser.setEmail(user.getProfile().getEmail());
-    readuser.setPhoneNumber(user.getProfile().getMobilePhone());
-    readuser.setLogin(user.getProfile().getLogin());
-
-
-    user.update();
-
-    return "result2";
-  }
-
-  @GetMapping("/deleteUser")
-  public String deleteUserForm(Model model) {
-    model.addAttribute("deleteUser", new Profile());
-    model.addAttribute("userEmail", new Profile());
-    return "deleteUser";
-  }
-
-  @PostMapping("/deleteUser")
-  public String deleteUserSubmit(@ModelAttribute Profile deleteuser, @ModelAttribute Profile useremail, Model model) {
-    model.addAttribute("deleteUser", deleteuser);
-    model.addAttribute("userEmail", useremail);
-
-    Client client = Clients.builder()
-    .setOrgUrl("https://dev-199195.oktapreview.com")
-    .setClientCredentials(new TokenClientCredentials("00xaTOVOnbcM3TqH_bvPn3wAOaa51kUANkj_8wEMlw"))
-    .build();
-
-    User user = client.getUser(useremail.getEmail());
-
-    deleteuser.setFirstName(user.getProfile().getFirstName());
-    deleteuser.setLastName(user.getProfile().getLastName());
-    deleteuser.setEmail(user.getProfile().getEmail());
-    deleteuser.setPhoneNumber(user.getProfile().getMobilePhone());
-    deleteuser.setLogin(user.getProfile().getLogin());
-
-    user.deactivate();
-    user.delete();
-
-    return "result3";
-  }
 
 
 }

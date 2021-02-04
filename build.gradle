@@ -44,6 +44,15 @@ dependencies {
 	// for spring boot testing
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('org.springframework.security:spring-security-test')
+	// https://mvnrepository.com/artifact/org.json/json
+	implementation 'org.json:json:20200518'
+	compile 'com.okta.authn.sdk:okta-authn-sdk-api:1.0.0'
+runtime 'com.okta.authn.sdk:okta-authn-sdk-impl:1.0.0'
+runtime 'com.okta.sdk:okta-sdk-httpclient:3.0.1'
+
+ implementation group: 'com.okta.sdk', name: 'okta-sdk-api', version: "1.5.2"
+    implementation group: 'com.okta.sdk', name: 'okta-sdk-impl', version: "1.5.2"
+    implementation group: 'com.okta.sdk', name: 'okta-sdk-httpclient', version: '1.5.2'
 }
 
 /*

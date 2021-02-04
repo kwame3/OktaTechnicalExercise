@@ -1,0 +1,44 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+>
+<head>
+    <!--/*/ <th:block th:include="fragments/head :: head"/> /*/-->
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="box col-md-6 col-md-offset-3">
+            <div class="okta-header">
+                <img src="img/logo.png"/>
+            </div>
+                    <div id="registerLink" class="hideMe">
+                    <a href="#floatingRegister" data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all ui-icon-check ui-btn-icon-left">Register New Account</a>
+                    <div id="floatingRegister" data-role="popup" class="ui-content" style="min-width:250px;">
+
+                        <form id="registraionForm" name="loginForm" method="POST" data-ajax="false">
+                            <div>
+                                <h3>Registration information</h3>
+                                <label for="firstName" class="ui-hidden-accessible">First Name:</label>
+                                <input type="text" name="firstName" placeholder="First Name" value="" />
+                                <label for="lastName" class="ui-hidden-accessible">Last Name:</label>
+                                <input type="text" name="lastName" placeholder="Last Name" value="" />
+                                <label for="email" class="ui-hidden-accessible">Email:</label>
+                                <input type="text" name="email" placeholder="Email" value="" />
+                                <label for="mobile" class="ui-hidden-accessible">Mobile:</label>
+                                <input type="text" name="mobile" placeholder="Mobile" value="" />
+                                <label for="password" class="ui-hidden-accessible">Password:</label>
+                                <input type="password" name="password" placeholder="Password" value="" />
+                                <label for="confpassword" class="ui-hidden-accessible">Confirm Password:</label>
+                                <input type="password" name="confpassword" placeholder="Confirm Password"  value="" />
+                                <input type="button" id="registerSubmitBtn" data-inline="true" value="Register" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+

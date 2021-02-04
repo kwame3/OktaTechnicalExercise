@@ -21,7 +21,7 @@
             <div th:unless="${#authorization.expression('isAuthenticated()')}">
                 <h1>Who are you?</h1>
             </div>
-
+	    <a href="/admin" class="btn btn-primary">Admin Page</a>
             <a href="/restricted" class="btn btn-primary">Restricted</a>
 
         </div>
